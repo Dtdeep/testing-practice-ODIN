@@ -3,6 +3,7 @@ import {
   reverseString,
   calculator,
   caesarCipher,
+  analyzeArray,
 } from "../src/functions.js";
 
 test("First letter should be capital", () => {
@@ -79,4 +80,46 @@ test("should encrypt letters that go beyond the alphabet", () => {
 
 test("should preserve symbols and spaces", () => {
   expect(caesarCipher("$ %^?| # & () + =", 5)).toBe("$ %^?| # & () + =");
+});
+
+test("function accept an array of numbers and output an object with a property of average", () => {
+  expect(analyzeArray([4, 4, 4, 4])).toMatchObject({ average: 4 });
+});
+
+test("function should output an object with a property of min and its value being the lowest number in the array of numbers", () => {
+  expect(analyzeArray([1, 2, 3, 4])).toMatchObject({ min: 1 });
+});
+
+test("function should output an object with a property of min and its value being the lowest number in the array of numbers (2)", () => {
+  expect(analyzeArray([22, 33, 2, 4, 3, 100])).toMatchObject({ min: 2 });
+});
+
+test("function should output an object with a property of max and its value being the largest number in the array of numbers", () => {
+  expect(analyzeArray([2, 2, 3, 4, 4])).toMatchObject({ max: 4 });
+});
+
+test("function should output an object with a property of max and its value being the largest number in the array of numbers (2)", () => {
+  expect(analyzeArray([4, 9, 30, 22, 30, 5])).toMatchObject({ max: 30 });
+});
+
+test("function should output an object with a property of length and its value being the length of the array", () => {
+  expect(analyzeArray([4, 9, 30, 22, 30, 5])).toMatchObject({ length: 6 });
+});
+
+test("function should output an object with the properties average, min, max and length with its proper values", () => {
+  expect(analyzeArray([3, 10, 30, 30, 22])).toEqual({
+    average: 19,
+    min: 3,
+    max: 30,
+    length: 5,
+  });
+});
+
+test("function should work with negative numbers", () => {
+  expect(analyzeArray([3, 10, 30, 30, -22])).toEqual({
+    average: 10.2,
+    min: -22,
+    max: 30,
+    length: 5,
+  });
 });

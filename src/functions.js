@@ -42,4 +42,27 @@ const caesarCipher = (string, jump) => {
   });
   return cipheredString.join("");
 };
-export { capitalize, reverseString, calculator, caesarCipher };
+
+const findAverage = (arrayOfNumbers) => {
+  const totalValue = arrayOfNumbers.reduce((accumulator, item) => {
+    accumulator += item;
+    return accumulator;
+  }, 0);
+  const average = totalValue / arrayOfNumbers.length;
+  return average;
+};
+
+const analyzeArray = (arrayOfNumbers) => {
+  const average = findAverage(arrayOfNumbers);
+  const sortedArrayOfNumbers = arrayOfNumbers.sort((a, b) => a - b);
+  const lowestNumber = sortedArrayOfNumbers[0];
+  const largestNumber = sortedArrayOfNumbers[sortedArrayOfNumbers.length - 1];
+  const arrayLength = sortedArrayOfNumbers.length;
+  return {
+    average: average,
+    min: lowestNumber,
+    max: largestNumber,
+    length: arrayLength,
+  };
+};
+export { capitalize, reverseString, calculator, caesarCipher, analyzeArray };
