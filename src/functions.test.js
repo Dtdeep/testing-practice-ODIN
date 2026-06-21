@@ -1,4 +1,9 @@
-import { capitalize, reverseString, calculator } from "../src/functions.js";
+import {
+  capitalize,
+  reverseString,
+  calculator,
+  caesarCipher,
+} from "../src/functions.js";
 
 test("First letter should be capital", () => {
   expect(capitalize("vagoi")).toBe("Vagoi");
@@ -50,4 +55,28 @@ test("object should multiply", () => {
 
 test("object should multiply decimals", () => {
   expect(calculator.multiply(10, 0.5)).toBe(5);
+});
+
+test("should encrypt a letter by 1", () => {
+  expect(caesarCipher("a", 1)).toBe("b");
+});
+
+test("should encrypt any letter by 2", () => {
+  expect(caesarCipher("g", 2)).toBe("i");
+});
+
+test("should encrypt a string of word", () => {
+  expect(caesarCipher("aaa", 9)).toBe("jjj");
+});
+
+test("should encrypt a string of word with capital and preseve it", () => {
+  expect(caesarCipher("MikaA the Cat", 2)).toBe("OkmcC vjg Ecv");
+});
+
+test("should encrypt letters that go beyond the alphabet", () => {
+  expect(caesarCipher("xyz", 3)).toBe("abc");
+});
+
+test("should preserve symbols and spaces", () => {
+  expect(caesarCipher("$ %^?| # & () + =", 5)).toBe("$ %^?| # & () + =");
 });
